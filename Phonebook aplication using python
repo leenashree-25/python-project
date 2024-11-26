@@ -1,0 +1,50 @@
+import json
+def load_phonebook(filename="phonebook.json"):
+    global phonebook
+    try:
+        with open(filename, "r") as file:
+            phonebook = json.load(file)
+        print(f"Phonebook loaded from {filename}.")
+    except FileNotFoundError:
+        print(f"{filename} not found. Starting with an empty phonebook.")
+
+# Main menu
+def main():
+    load_phonebook()
+    while True:
+        print("\nPhonebook Menu:")
+        print("1. Add Contact")
+        print("2. View Contacts")
+        print("3. Delete Contact")
+        print("4. Update Contact")
+        print("5. Delete Duplicate Contacts")
+        print("6. Save Phonebook")
+        print("7. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            name = input("Enter name: ")
+            number = input("Enter number: ")
+            add_contact(name, number)
+        elif choice == '2':
+            view_contacts()
+        elif choice == '3':
+            name = input("Enter name to delete: ")
+            delete_contact(name)
+        elif choice == '4':
+            name = input("Enter name to update: ")
+            new_number = input("Enter new number: ")
+            update_contact(name, new_number)
+        elif choice == '5':
+            delete_duplicates()
+        elif choice == '6':
+            save_phonebook()
+        elif choice == '7':
+            save_phonebook()
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if _name_ == "_main_":
+    main()
